@@ -1,0 +1,6 @@
+*CVS/
+.git/*
+
+*~
+Backup*.cdr
+target/
