@@ -29,11 +29,18 @@ public class ImageLabeler {
     }
 
     public static void main(String[] args) throws Exception {
-        String version = "3.1.4";
+        if (args.length != 3) {
+            System.out.println("Usage: [version] [template.bmp] [splash.bmp]");
+            System.exit(-1);
+        }
+        
+        String version = args[0];
         String fontName = "AGENCYR.TTF";
+        String inFile = args[1];
+        String outFile = args[2];
         int xPosition = 394;
         int yPosition = 53;
-        BufferedImage image = ImageIO.read(new File("../images/css-nsls2-splash.bmp"));
+        BufferedImage image = ImageIO.read(new File(inFile));
         Graphics2D g = (Graphics2D) image.getGraphics();
         g.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
         g.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
@@ -43,6 +50,6 @@ public class ImageLabeler {
         g.setTransform(AffineTransform.getTranslateInstance(0.3, 0));
         int length = g.getFontMetrics().stringWidth(version);
         g.drawString(version, xPosition - length, yPosition);
-        ImageIO.write(image, "bmp", new File("../images/css-nsls2-splash-" + version + ".bmp"));
+        ImageIO.write(image, "bmp", new File(outFile));
     }
 }
