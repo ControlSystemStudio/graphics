@@ -29,17 +29,17 @@ public class ImageLabeler {
     }
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 3) {
-            System.out.println("Usage: [version] [template.bmp] [splash.bmp]");
+        if (args.length != 5) {
+            System.out.println("Usage: [version] [xPosition] [yPosition] [template.bmp] [splash.bmp]");
             System.exit(-1);
         }
         
         String version = args[0];
         String fontName = "AGENCYR.TTF";
-        String inFile = args[1];
-        String outFile = args[2];
-        int xPosition = 394;
-        int yPosition = 53;
+        String inFile = args[3];
+        String outFile = args[4];
+        int xPosition = Integer.parseInt(args[1]); //394;
+        int yPosition = Integer.parseInt(args[2]); //53;
         BufferedImage image = ImageIO.read(new File(inFile));
         Graphics2D g = (Graphics2D) image.getGraphics();
         g.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
