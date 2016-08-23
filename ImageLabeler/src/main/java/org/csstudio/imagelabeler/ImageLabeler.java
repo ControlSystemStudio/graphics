@@ -27,13 +27,16 @@ public class ImageLabeler {
 				"                                     [<icon> <xIconPosition> <yIconPosition>]]\n" +
 				"Where:\n" +
 				"  <version>       is the version string,\n" +
-				"  <xPosition>     is the right  X coordinate of the version string,\n" +
-				"  <yPosition>     is the bottom Y coordinate of the version string,\n" +
+				"  <xPosition>     is the right X coordinate of the version string,\n" +
+				"  <yPosition>     is the baseline Y coordinate of the version string,\n" +
 				"  <template.bmp>  is the pathname of the template bitmap file,\n" +
 				"  <splash.bmp>    is the pathname of the generated (annotated) splash-screen bitmap\n" +
 				"  <affiliation>   is an optional affiliation text\n" +
-				"  <xAffPosition>  is the left   X coordinate of the affiliation string,\n" +
-				"  <yAffPosition>  is the bottom Y coordinate of the affiliation string,\n"
+				"  <xAffPosition>  is the left X coordinate of the affiliation string,\n" +
+				"  <yAffPosition>  is the baseline Y coordinate of the affiliation string,\n" +
+				"  <icon>          is an optional icon\n" +
+				"  <xIconPosition> is the left X coordinate of the icon,\n" +
+				"  <yIconPosition> is the top Y coordinate of the icon.\n"
 			);
 			System.exit(- args.length);
 		}
@@ -68,7 +71,15 @@ public class ImageLabeler {
 
 			g.drawString(affiliation, xAffPosition, yAffPosition);
 
+		}
 
+		if ( args.length >= 3 + 2 + 3 + 3 ) {
+
+			BufferedImage icon = ImageIO.read(new File(args[8]));
+			int xIconPosition = Integer.parseInt(args[9]); // 19;
+			int yIconPosition = Integer.parseInt(args[10]); //151;
+
+			g.drawImage(icon, null, xIconPosition, yIconPosition);
 
 		}
 
